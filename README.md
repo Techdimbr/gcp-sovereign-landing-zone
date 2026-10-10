@@ -1,107 +1,69 @@
-# 🏛️ GCP Sovereign Landing Zone (`PRJ-TECHDIM-PUBLIC-v1.0.0`)
+# ☁️ GCP Sovereign Landing Zone
+## Módulo Terraform Corporativo para Implantação de Landing Zone Segura e Soberana no Google Cloud
 
-<p align="center">
-  <img src="icone.svg" width="80" alt="TECHDIM Logo" />
-</p>
+![GCP Sovereign Landing Zone](06_MIDIA/banner_oficial.png)
 
-<p align="center">
-  <a href="https://www.debian.org"><img src="https://img.shields.io/badge/OS-Debian%2013%20(Trixie%2FSid)-A81D33?style=flat-square&logo=debian&logoColor=white" alt="Debian 13" /></a>
-  <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python-3.11%2B%20(Stdlib)-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.11+" /></a>
-  <a href="04_INTELIGENCIA_DE_DESENVOLVIMENTO/adrs/ADR-0001-arquitetura-atomica.md"><img src="https://img.shields.io/badge/Architecture-Atomic%20Box-0052CC?style=flat-square" alt="Architecture" /></a>
-  <a href="05_VERSOES/git_templates/hooks/pre-commit"><img src="https://img.shields.io/badge/Zero%20Leaks-Verified-2ea44f?style=flat-square&logo=shield" alt="Zero Leaks" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License MIT" /></a>
-  <a href="https://cloud.google.com"><img src="https://img.shields.io/badge/Google%20Cloud-Ready-4285F4?style=flat-square&logo=googlecloud&logoColor=white" alt="Google Cloud Ready" /></a>
-  <a href="https://techdimbr.github.io/techdimbr/"><img src="https://img.shields.io/badge/GitHub%20Pages-Live%20Showcase-0969DA?style=flat-square&logo=github&logoColor=white" alt="GitHub Pages" /></a>
-</p>
+[![Padrão](https://img.shields.io/badge/Padr%C3%A3o-PRJ--TECHDIM--PUBLIC--v1.0.0-00E5FF.svg)](https://techdimbr.github.io/techdimbr/)
+[![Doutrina](https://img.shields.io/badge/Doutrina-KETHER__1-7C4DFF.svg)](https://www.techdim.com.br)
+[![Nuvem](https://img.shields.io/badge/Cloud-Google%20Cloud%20Platform-4285F4.svg)](https://cloud.google.com)
+[![IaC](https://img.shields.io/badge/IaC-Terraform%20%7C%20OpenTofu-7B42BC.svg)](https://www.terraform.io)
+[![Arquitetura](https://img.shields.io/badge/Per%C3%ADmetro-Zero%20Public%20IPs-00C853.svg)](README.md)
+[![Licença](https://img.shields.io/badge/Licen%C3%A7a-MIT%20Corporate-green.svg)](LICENSE)
 
-<p align="center">
-  <img src="06_MIDIA/banner_oficial.png" width="100%" alt="TECHDIM Banner" />
-</p>
-
-> **Propriedade:** TECHDIM INOVA SIMPLES (I.S.) · CNPJ: 61.933.926/0001-24  
-> **Doutrina:** Kether_1 · Central de Engenharia, Ciberdefesa e Governança Soberana  
-> **Identificador Canônico:** `PRJ-TECHDIM-PUBLIC-v1.0.0`
+> **Provisionamento determinístico de Landing Zone soberana no Google Cloud com VPC privada, Zero Public IPs, Cloud NAT de alta performance, acesso administrativo seguro via Identity-Aware Proxy (IAP) e Cloud KMS CMEK com rotação periódica.**
 
 ---
 
-## 🇧🇷 Visão Geral (Português)
+## 🏛️ Visão Geral & Proposta de Valor
 
-O **Padrão Canônico TECHDIM GitHub Público** é o template de arquitetura corporativa para desenvolvimento open-source e B2B da TECHDIM. Ele estrutura sistemas como uma **Caixa-Preta Atômica** (organismo autocontido, offline-first e determinístico), garantindo que qualquer desenvolvedor ou auditor possa clonar, verificar a integridade matemática e executar a aplicação instantaneamente.
+Projetos em nuvem frequentemente sofrem com configurações negligentes: máquinas virtuais criadas com IPs públicos transitórios, bancos de dados sem encriptação gerenciada pelo cliente e permissões de IAM excessivamente permissivas.
 
-### Destaques da Engenharia
-- **Filosofia de Caixa-Preta Atômica:** Ciclo de vida previsível em 7 diretórios numéricos canônicos (`00` a `06`).
-- **Prova Matemática de Integridade (AIDE/Tripwire):** Verificação SHA-256 nativa de scripts e manifestos via `00_AUDITORIA/verificar_integridade.sh`.
-- **Barreira Zero Leaks:** Hook pré-commit nativo que bloqueia envio acidental de arquivos `.env`, chaves privadas e tokens de nuvem.
-- **Prontidão Nativa para Agentes de IA:** Diretrizes universais em `AGENTS.md`, `GEMINI.md`, `CLAUDE.md` e `.agents/skills/`.
-- **Bootstrap Inteligente:** Inicialização instantânea (< 1s) para módulos em Python puro (stdlib) e isolamento automático em `.venv` quando dependências externas forem requeridas.
+O **GCP Sovereign Landing Zone** resolve esses problemas estruturais entregando uma fundação de nuvem pronta para ambientes regulados e auditorias rigorosas:
+1. **Perímetro Zero Public IPs:** Nenhuma instância ou carga de trabalho recebe IP público. Todo o tráfego de saída passa por Cloud NAT com IPs dedicados e previsíveis.
+2. **Acesso Remoto Blindado via IAP (Identity-Aware Proxy):** Acesso administrativo SSH e RDP realizado exclusivamente através de túneis criptografados autenticados pelo Google Workspace / Cloud Identity, eliminando a necessidade de Jump Hosts (Bastion Hosts) caros e vulneráveis.
+3. **Soberania Criptográfica (Cloud KMS CMEK):** Encriptação de discos, buckets e dados em repouso com Customer-Managed Encryption Keys e rotação periódica automática de 90 dias.
 
 ---
 
-## 🇺🇸 Executive Summary (English)
+## 🏗️ Topologia da Arquitetura Soberana
 
-The **TECHDIM Canonical Standard for Public GitHub Repositories** is an enterprise-grade architectural blueprint designed to build software as an **Atomic Black Box** (self-contained, offline-first, and deterministic). Engineered for mission-critical reliability, it enforces a strict 7-tier decimal directory lifecycle (`00` through `06`) with native mathematical integrity checks and multi-agent AI orchestration.
-
----
-
-## 📐 Arquitetura Canônica / Directory Architecture
-
-```text
-gcp-sovereign-landing-zone/
-├── 00_AUDITORIA/                       # Rastreabilidade, checksums.sha256 e verificação AIDE
-├── 01_SOBRE_O_PROJETO/                 # Visão de negócio, dores resolvidas e diagramas
-├── 02_COMO_USAR/                       # Guias de instalação, manuais e scripts operacionais
-├── 03_APLICACAO/                       # Código-fonte executável (src/), testes (tests/) e assets
-├── 04_INTELIGENCIA_DE_DESENVOLVIMENTO/ # ADRs (Architecture Decision Records) e referências
-├── 05_VERSOES/                         # Histórico de releases, CHANGELOG e git templates/hooks
-├── 06_MIDIA/                           # Ativos visuais essenciais (banner_oficial.png)
-│
-├── .agents/skills/                     # Skills embutidas para agentes de IA
-├── .github/workflows/                  # CI/CD (testes automatizados e auditoria de segurança)
-├── .env.example                        # Template seguro de variáveis de ambiente
-├── project.json                        # Manifesto estruturado de metadados corporativos
-├── LEIA-ME.md                          # Manual técnico operacional (Uso Interno)
-├── README.md                           # Vitrine pública executiva bilíngue (GitHub)
-├── iniciar.sh / INICIAR.bat            # Lançadores multiplataforma com bootstrap automático
-└── LICENSE                             # Licença MIT aberta com termos institucionais
+```mermaid
+graph TD
+    User["Administrador / Engenheiro"] -->|Túnel Criptografado IAP (Zero Bastion)| IAP["Google Identity-Aware Proxy"]
+    IAP --> Workload["Instâncias / GKE (IPs 100% Privados - RFC 1918)"]
+    Workload -->|Saída Filtrada| NAT["Google Cloud NAT (IPs Estáticos Fixos)"]
+    NAT --> Internet["Internet Externa (APIs / Repositórios)"]
+    Workload -->|Criptografia em Repouso| KMS["Google Cloud KMS (CMEK Chaves Soberanas)"]
+    Internet -->|WAF & Anti-DDoS L7| Armor["Google Cloud Armor"]
+    Armor --> Workload
 ```
 
 ---
 
-## 🚀 Como Executar / Quick Start
+## ⚡ Início Rápido
 
+### Pré-requisitos
+- Terraform 1.6+ ou OpenTofu 1.7+
+- Google Cloud CLI (`gcloud`) autenticado com permissões de `Owner` ou `Editor` no projeto alvo
+- Projeto GCP com faturamento ativo
+
+### Comandos de Validação e Aplicação
 ```bash
 # 1. Clonar o repositório
-git clone https://github.com/Techdimbr/<nome-do-repositorio>.git
-cd <nome-do-repositorio>
+git clone https://github.com/Techdimbr/gcp-sovereign-landing-zone.git
+cd gcp-sovereign-landing-zone
 
-# 2. Verificar a integridade matemática dos arquivos críticos (AIDE/SHA-256)
-./00_AUDITORIA/verificar_integridade.sh
-
-# 3. Inicializar a aplicação (bootstrap inteligente automático)
+# 2. Inicializar o ambiente local
 ./iniciar.sh
+
+# 3. Validar a conformidade das regras Terraform
+python3 03_APLICACAO/src/validator.py --dir 03_APLICACAO/src
 ```
 
 ---
 
-## 🛡️ Segurança e Governança
-
-- **Verificação de Integridade:** Execute `./00_AUDITORIA/verificar_integridade.sh` para auditoria matemática via SHA-256.
-- **Zero Leaks:** Nunca versione o arquivo `.env`. Copie `.env.example` para `.env` e configure suas variáveis locais.
-- **Git Hooks:** Ative a barreira pré-commit executando `./05_VERSOES/git_templates/configurar_git.sh`.
-
----
-
-## 💼 Implantação Corporativa & Parcerias Estratégicas
-
-A **TECHDIM Inova Simples** fornece blueprints de código aberto e atua na implantação de arquiteturas avançadas de ciberdefesa, nuvem soberana e governança corporativa:
-
-- 🛡️ **Hardening & Ciberdefesa:** Blindagem de servidores Linux Debian, regras avançadas de nftables e contenção de endpoints.
-- ☁️ **Arquitetura Google Cloud (GCP):** Landing Zones soberanas, conectividade privada (VPC/IAP), Cloud Armor e CMEK.
-- 🤖 **IA Privada & RAG Corporativo:** Sistemas corporativos com Vertex AI e Gemini sem vazamento de dados confidenciais.
-- ⚖️ **Governança LGPD:** Auditorias automatizadas de bancos de dados, varredura de PII e emissão de relatórios de conformidade.
-
-### Contato Comercial & Canais Oficiais
-- 🌐 **Website Oficial:** [https://www.techdim.com.br](https://www.techdim.com.br)
-- 🚀 **Vitrine Interativa (GitHub Pages):** [https://techdimbr.github.io/techdimbr/](https://techdimbr.github.io/techdimbr/)
-- 📩 **Atendimento Corporativo:** `contato@techdim.com.br` / `reparafacilcampinas@gmail.com`
-- 🏢 **CNPJ:** `61.933.926/0001-24` — TECHDIM INOVA SIMPLES (I.S.) · Campinas/SP
+## 🛡️ Governança & Contato Corporativo
+- **Autor:** Deivis Írio Mayer (Kether_1)
+- **Entidade:** TECHDIM INOVA SIMPLES (I.S.) - ME · CNPJ 61.933.926/0001-24
+- **Website Oficial:** [https://www.techdim.com.br](https://www.techdim.com.br)
+- **Portal de Soluções:** [https://techdimbr.github.io/techdimbr/](https://techdimbr.github.io/techdimbr/)
